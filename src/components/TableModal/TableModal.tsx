@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Modal, Typography } from "@mui/material";
-import { DescriptionTable } from "./Table.style";
+import { DescriptionTable } from "../Table/Table.style";
 import { useTableModal } from "../../store/Modal/useModal";
 
 const style = {

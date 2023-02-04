@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useContext, useState } from "react";
 import { ModalContext } from ".";
-import { IProduct } from "../../components/Table/IProduct";
+import { IProduct } from "../../services/Products/IProduct";
 
 export const useTableModal = () => {
   const value = useContext(ModalContext);

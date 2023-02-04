@@ -1,4 +1,4 @@
-import { IProduct } from "./IProduct";
+import { IProduct } from "../../services/Products/IProduct";
 
 export interface ITableModalProps {
   data: IProduct;

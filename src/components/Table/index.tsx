@@ -1,5 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -11,43 +10,21 @@ import Paper from "@mui/material/Paper";
 import { MuiTable, CellTable, ColoredTableRow } from "./Table.style";
 import TableRow from "@mui/material/TableRow";
 import TablePaginationActions from "./TablePaginationActions";
-import { IProduct } from "./IProduct";
-import { IProductsDataResponse } from "./IProductsDataResponse";
+import { IProduct } from "../../services/Products/IProduct";
 import { useTableModal } from "../../store/Modal/useModal";
+import { useListProductsQuery, rowsPerPage } from "../../services/Products";
+import Loader from "../Loader";
 
-export default function CustomPaginationActionsTable() {
-  const [page, setPage] = useState<number>(1);
-  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
-  const [total, setTotal] = useState<number>(0);
-  const [rows, setRows] = useState<IProduct[]>([]);
+export default function Table() {
+  const [page, setPage] = useState<number>(0);
+  const {
+    data: products,
+    error,
+    isLoading,
+    isFetching,
+  } = useListProductsQuery(page + 1);
 
   const { handleModal } = useTableModal();
-
-  const apiCallback = useCallback(async () => {
-    try {
-      const res = await axios.get<IProductsDataResponse>(
-        `https://reqres.in/api/products?per_page=${rowsPerPage}`
-      );
-
-      if (!res.data) {
-        return;
-      }
-
-      const { page, total, data } = res.data;
-
-      setPage(page);
-      setTotal(total);
-      setRows(data);
-
-      console.log(res.data);
-    } catch (error) {
-      console.error(error);
-    }
-  }, [rows]);
-
-  useEffect(() => {
-    apiCallback();
-  }, []);
 
   const handleChangePage = (
     event: React.MouseEvent<HTMLButtonElement> | null,
@@ -56,31 +33,25 @@ export default function CustomPaginationActionsTable() {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-
   return (
     <>
+      <Loader open={isLoading || isFetching} />
       <TableContainer component={Paper}>
         <MuiTable aria-label="Table">
           <TableBody>
-            {rows.map((row) => (
+            {products?.data.map((product: IProduct) => (
               <ColoredTableRow
-                key={row.id}
-                color={row.color}
+                key={product.id}
+                color={product.color}
                 onClick={() => {
-                  handleModal(row);
+                  handleModal(product);
                 }}
               >
                 <TableCell component="th" scope="row">
-                  {row.id}
+                  {product.id}
                 </TableCell>
-                <CellTable align="right">{row.name}</CellTable>
-                <CellTable align="right">{row.year}</CellTable>
+                <CellTable align="right">{product.name}</CellTable>
+                <CellTable align="right">{product.year}</CellTable>
               </ColoredTableRow>
             ))}
             <TableRow>
@@ -92,7 +63,7 @@ export default function CustomPaginationActionsTable() {
               <TablePagination
                 rowsPerPageOptions={[rowsPerPage]}
                 colSpan={3}
-                count={total}
+                count={products?.total || 0}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 SelectProps={{
@@ -104,7 +75,6 @@ export default function CustomPaginationActionsTable() {
                 showFirstButton={false}
                 showLastButton={false}
                 onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
                 ActionsComponent={TablePaginationActions}
               />
             </TableRow>

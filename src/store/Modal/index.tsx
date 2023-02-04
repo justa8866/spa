@@ -1,7 +1,7 @@
 import React, { createContext, PropsWithChildren } from "react";
 import useModal from "./useModal";
-import TableModal from "../../components/Table/TableModal";
-import { ITableModalProps } from "../../components/Table/ITableModalProps";
+import TableModal from "../../components/TableModal/TableModal";
+import { ITableModalProps } from "../../components/TableModal/ITableModalProps";
 
 const ModalContext = createContext<ITableModalProps | null>(null);
 const { Provider } = ModalContext;
