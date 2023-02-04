@@ -1,12 +1,16 @@
 import React from "react";
-import { Box, Button, CssBaseline } from "@mui/material";
+import { Box, CssBaseline } from "@mui/material";
+import Table from "../Table";
+import { ModalProvider } from "../../store/Modal";
 
 function App() {
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <Button>test</Button>
-    </Box>
+    <ModalProvider>
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
+        <Table />
+      </Box>
+    </ModalProvider>
   );
 }
 
