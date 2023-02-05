@@ -7,7 +7,7 @@ export const Container = styled(Box)({
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: "background.paper",
+  background: "#fff",
   border: "2px solid #000",
   padding: 4,
 });
