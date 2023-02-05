@@ -3,10 +3,15 @@ import { Box, CssBaseline } from "@mui/material";
 import Table from "../Table";
 import { ToastContainer } from "react-toastify";
 import FullscreenProgress from "../FullscreenProgress";
+import InputFilter from "../InputFilter";
 
 function App() {
   return (
     <Suspense fallback={<FullscreenProgress />}>
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
+        <InputFilter />
+      </Box>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <Table />
