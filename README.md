@@ -13,6 +13,10 @@ properties: id, name, and year. Additionally, the background colour of each row 
 
 [X] Your app should start after running npm install & npm start.
 
+[X] Please reflect pagination and filtering in the address URL, so users can copy and share the URL with each other.
+
+[X] add Redux/Context API or other state management library
+
 [] Add unit tests
 
 # Getting Started with Create React App

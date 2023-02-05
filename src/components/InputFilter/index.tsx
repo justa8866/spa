@@ -1,26 +1,10 @@
-import { Button, TextField } from "@mui/material";
 import React from "react";
-import { Field, Form, Formik } from "formik";
+import { Field, Formik } from "formik";
 import { NumberParam, useQueryParam } from "use-query-params";
-
-interface IFilterInputValues {
-  productId: number;
-}
-
-const FilterInput = ({ ...props }) => {
-  return (
-    <TextField
-      id="filter-input"
-      label="Filter"
-      type="number"
-      InputLabelProps={{
-        shrink: true,
-      }}
-      InputProps={{ inputProps: { min: 0 } }}
-      {...props}
-    />
-  );
-};
+import FilterInput from "./FilterInput";
+import SubmitButton from "../SubmitButton";
+import InputFilterBox from "./InputFilterBox.style";
+import { IFilterInputValues } from "./IFilterInputValues";
 
 const InputFilter = () => {
   const onSubmit = (values: IFilterInputValues) => {
@@ -34,12 +18,10 @@ const InputFilter = () => {
       initialValues={{ productId: productId ? productId : 0 }}
       onSubmit={onSubmit}
     >
-      <Form>
+      <InputFilterBox>
         <Field as={FilterInput} name="productId" />
-        <Button type="submit" variant="contained">
-          Filter
-        </Button>
-      </Form>
+        <SubmitButton>Filter</SubmitButton>
+      </InputFilterBox>
     </Formik>
   );
 };

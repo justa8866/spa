@@ -1,4 +1,4 @@
-import { Table, TableCell, TableRow, Typography } from "@mui/material";
+import { Table, TableCell, TableRow, Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 export const MuiTable = styled(Table)({
@@ -13,6 +13,7 @@ export const ColoredTableRow = styled(TableRow)((props) => ({
   backgroundColor: props.color,
 }));
 
-export const DescriptionTable = styled(Typography)({
-  width: "160px",
+export const Container = styled(Box)({
+  marginLeft: "10px",
+  flexShrink: 0,
 });

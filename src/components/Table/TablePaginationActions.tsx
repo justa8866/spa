@@ -1,17 +1,9 @@
 import React from "react";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
-import { Box, IconButton } from "@mui/material";
+import { IconButton } from "@mui/material";
 import { useListProductsQuery } from "../../services/Products";
-
-interface TablePaginationActionsProps {
-  page: number;
-  count: number;
-  rowsPerPage: number;
-  onPageChange: (
-    event: React.MouseEvent<HTMLButtonElement>,
-    newPage: number
-  ) => void;
-}
+import { Container } from "./Table.style";
+import { TablePaginationActionsProps } from "./TablePaginationActionsProps";
 
 const TablePaginationActions = (props: TablePaginationActionsProps) => {
   const { page, count, rowsPerPage, onPageChange } = props;
@@ -26,7 +18,7 @@ const TablePaginationActions = (props: TablePaginationActionsProps) => {
   };
 
   return (
-    <Box sx={{ flexShrink: 0, ml: 2.5 }}>
+    <Container>
       <IconButton
         onClick={handleBackButtonClick}
         disabled={page === 0 || isLoading || isFetching}
@@ -43,7 +35,7 @@ const TablePaginationActions = (props: TablePaginationActionsProps) => {
       >
         <KeyboardArrowRight />
       </IconButton>
-    </Box>
+    </Container>
   );
 };
 

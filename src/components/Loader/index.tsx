@@ -1,5 +1,6 @@
 import React from "react";
-import { Backdrop, CircularProgress } from "@mui/material";
+import { CircularProgress } from "@mui/material";
+import CustomBackdrop from "./Loader.style";
 
 interface ILoader {
   open: boolean;
@@ -7,12 +8,9 @@ interface ILoader {
 
 const Loader = ({ open }: ILoader) => {
   return (
-    <Backdrop
-      sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-      open={open}
-    >
+    <CustomBackdrop open={open}>
       <CircularProgress color="inherit" />
-    </Backdrop>
+    </CustomBackdrop>
   );
 };
 

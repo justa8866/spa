@@ -1,10 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { IListResponse } from "./IListResponse";
 import { IProduct } from "./IProduct";
-
-interface ISearchResponse<T> {
-  data: T;
-}
+import { ISearchResponse } from "./ISearchResponse";
 
 export const rowsPerPage = 5;
 
