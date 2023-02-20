@@ -17,7 +17,6 @@ properties: id, name, and year. Additionally, the background colour of each row 
 
 [X] add Redux/Context API or other state management library
 
-[] Add unit tests
 
 # Getting Started with Create React App
 
